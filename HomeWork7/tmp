@@ -1,0 +1,47 @@
+    x1start, y1start, x1end, y1end = x1, y1, x2, y2
+    x2start, y2start, x2end, y2end = seg.x1, seg.y1, seg.x2, seg.y2
+    if real_close x1start, x1end
+      if y1start < y2start
+        if real_close y1end, y2start
+          Point.new(x1end, y1end)
+        elsif y1end < y2start
+          NoPoints.new
+        elsif y1end > y2end
+          LineSegment.new(x2start, y2start, x2end, y2end)
+        else
+          LineSegment.new(x2start, y2start, x1end, y1end)
+        end
+      else
+        if real_close y2end, y1start
+          Point.new(x2end, y2end)
+        elsif y2end < y1start
+          NoPoints.new
+        elsif y2end > y1end
+          LineSegment.new(x1start, y1start, x1end, y1end)
+        else
+          LineSegment.new(x1start, y1start, x2end, y2end)
+        end
+      end
+    else
+      if x1start < x2start
+        if real_close x1end, x2start
+          Point.new(x1end, y1end)
+        elsif x1end < x2start
+          NoPoints.new
+        elsif x1end > x2end
+          LineSegment.new(x2start, y2start, x2end, y2end)
+        else
+          LineSegment.new(x2start, y2start, x1end, y1end)
+        end
+      else
+        if real_close x2end, x1start
+          Point.new(x2end, y2end)
+        elsif x2end < x1start
+          NoPoints.new
+        elsif x2end > x1end
+          LineSegment.new(x1start, y1start, x1end, y1end)
+        else
+          LineSegment.new(x1start, y1start, x2end, y2end)
+        end
+      end
+    end
